@@ -26,3 +26,8 @@ jobs:
           plugin_languages_ignored: html, css, scss, blade
           # Additionally display total bytes size and percentage              
           plugin_languages_details: bytes-size, percentage
+
+          # This plugin displays an isometric view of a user commit calendar along with a few additional statistics like current streak and average number of commit per day.
+          plugin_isocalendar: true
+          # Time range. half-year: 180 days full-year: 1 year
+          plugin_isocalendar_duration: half-year
