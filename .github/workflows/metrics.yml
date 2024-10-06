@@ -1,0 +1,30 @@
+name: Metrics
+on:
+  # Schedule daily updates
+  schedule: [{cron: "0 0 * * *"}]
+  # (optional) Run workflow manually
+  workflow_dispatch:
+  # (optional) Run workflow when pushing on master/main
+  push: {branches: ["master", "main"]}
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    environment: 
+      name: production
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          config_timezone: Europe/Paris
+
+          # base
+          base: header, activity, community, metadata #repository
+          
+          # The languages plugin displays which programming languages you use the most across all your repositories.
+          plugin_languages: true
+          # List of languages to ignore
+          plugin_languages_ignored: html, css
+          # Additionally display total bytes size and percentage              
+          plugin_languages_details: bytes-size, percentage
